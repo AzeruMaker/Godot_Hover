@@ -28,21 +28,53 @@ class Hover:
 
 @onready var test = Hover.new(self) 
 var is_in_image = false
-
-# Called when the node enters the scene tree for the first time.
-func _ready():
-	test.set_dimension (100, 100)
-	test.set_text("Hello there")
 	
 # Called every frame. 'delta' is the elapsed time since the previous frame.
 func _process(delta):
 	if (is_in_image == true):
 		test.set_pos(get_global_mouse_position())
 
-func _on_area_2d_mouse_shape_entered(shape_idx):
+#---------------------------------------------------------------------------
+# Face 1
+#---------------------------------------------------------------------------
+
+func _face1_input_event(viewport, event, shape_idx):
+	if (event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT):
+		print("Link 1, your click is in another castle")
+			# Move right.
+
+func _face1_mouse_shape_entered(shape_idx):
 	is_in_image = true
+	test.set_dimension (150, 150)
+	test.set_text("Random face 1 : 
+	⚔+1
+	🛡+1
+	🛠️+2
+	🌱+3")
 	test.set_visible(true)
 
-func _on_area_2d_mouse_shape_exited(shape_idx):
+func _face1_mouse_shape_exited(shape_idx):
 	test.set_visible(false)
 	is_in_image = false
+	
+#---------------------------------------------------------------------------
+# Face 2
+#---------------------------------------------------------------------------
+
+func _on_face_2_mouse_shape_entered(shape_idx):
+	is_in_image = true
+	test.set_dimension (200, 150)
+	test.set_text("Another random face 3 : 
+	⚔+3
+	🛡+4
+	🛠️+5
+	🌱+6")
+	test.set_visible(true)
+
+func _on_face_2_mouse_shape_exited(shape_idx):
+	test.set_visible(false)
+	is_in_image = false
+
+func _on_face_2_input_event(viewport, event, shape_idx):
+	if (event.is_pressed() && event.button_index == MOUSE_BUTTON_LEFT):
+		print("Link 2, your click is in another castle")

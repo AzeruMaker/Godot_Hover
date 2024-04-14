@@ -11,24 +11,46 @@ blend_mode = 1
 size = Vector2(177, 181)
 
 [node name="test" type="Node2D"]
+position = Vector2(15, 9)
 script = ExtResource("1_e0wu1")
 
-[node name="Area2D" type="Area2D" parent="."]
+[node name="Face1" type="Area2D" parent="."]
 show_behind_parent = true
 material = SubResource("CanvasItemMaterial_30aem")
-position = Vector2(128, 56)
+position = Vector2(-37, 164)
 disable_mode = 2
 collision_priority = 2.0
 priority = 1
 
-[node name="CollisionShape2D" type="CollisionShape2D" parent="Area2D"]
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Face1"]
 position = Vector2(255.5, 197.5)
 shape = SubResource("RectangleShape2D_mtn2p")
 
-[node name="R" type="Sprite2D" parent="Area2D"]
-position = Vector2(256, 200)
+[node name="R" type="Sprite2D" parent="Face1"]
+position = Vector2(256, 199)
 scale = Vector2(0.296954, 0.310169)
 texture = ExtResource("2_hgm2j")
 
-[connection signal="mouse_shape_entered" from="Area2D" to="." method="_on_area_2d_mouse_shape_entered"]
-[connection signal="mouse_shape_exited" from="Area2D" to="." method="_on_area_2d_mouse_shape_exited"]
+[node name="Face2" type="Area2D" parent="."]
+show_behind_parent = true
+material = SubResource("CanvasItemMaterial_30aem")
+position = Vector2(226, 167)
+disable_mode = 2
+collision_priority = 2.0
+priority = 1
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="Face2"]
+position = Vector2(255.5, 197.5)
+shape = SubResource("RectangleShape2D_mtn2p")
+
+[node name="R" type="Sprite2D" parent="Face2"]
+position = Vector2(256, 199)
+scale = Vector2(0.296954, 0.310169)
+texture = ExtResource("2_hgm2j")
+
+[connection signal="input_event" from="Face1" to="." method="_face1_input_event"]
+[connection signal="mouse_shape_entered" from="Face1" to="." method="_face1_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="Face1" to="." method="_face1_mouse_shape_exited"]
+[connection signal="input_event" from="Face2" to="." method="_on_face_2_input_event"]
+[connection signal="mouse_shape_entered" from="Face2" to="." method="_on_face_2_mouse_shape_entered"]
+[connection signal="mouse_shape_exited" from="Face2" to="." method="_on_face_2_mouse_shape_exited"]
